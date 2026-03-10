@@ -1047,7 +1047,7 @@ namespace OpenLoco::Audio
     void playBackgroundMusic()
     {
         auto& cfg = Config::get();
-        if (cfg.audio.playJukeboxMusic == 0 || SceneManager::isTitleMode() || SceneManager::isEditorMode() || SceneManager::isPaused())
+        if (!_audioIsEnabled || cfg.audio.playJukeboxMusic == 0 || SceneManager::isTitleMode() || SceneManager::isEditorMode() || SceneManager::isPaused())
         {
             return;
         }
