@@ -58,7 +58,7 @@ namespace OpenLoco
         for (auto i = 0U; i < numBuildingVariations; ++i)
         {
             buildingVariationPartsOffset[i] = static_cast<uint32_t>(remainingData.data() - data.data());
-            while (*remainingData.data() != static_cast<std::byte>(0xFF))
+            while (!remainingData.empty() && *remainingData.data() != static_cast<std::byte>(0xFF))
             {
                 remainingData = remainingData.subspan(1);
             }

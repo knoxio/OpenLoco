@@ -389,7 +389,7 @@ namespace OpenLoco
             {
                 continue;
             }
-            while (*reinterpret_cast<const CargoCategory*>(remainingData.data()) != CargoCategory::null)
+            while (remainingData.size() >= sizeof(CargoCategory) && *reinterpret_cast<const CargoCategory*>(remainingData.data()) != CargoCategory::null)
             {
                 const auto cargoCategory = *reinterpret_cast<const CargoCategory*>(remainingData.data());
                 remainingData = remainingData.subspan(sizeof(CargoCategory));

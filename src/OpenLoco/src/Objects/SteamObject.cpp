@@ -19,7 +19,7 @@ namespace OpenLoco
 
         frameInfoType0Offset = static_cast<uint32_t>(remainingData.data() - data.data());
         totalNumFramesType0 = 0;
-        while (*remainingData.data() != static_cast<std::byte>(0xFF))
+        while (!remainingData.empty() && *remainingData.data() != static_cast<std::byte>(0xFF))
         {
             totalNumFramesType0++;
             remainingData = remainingData.subspan(sizeof(ImageAndHeight));
@@ -28,7 +28,7 @@ namespace OpenLoco
 
         frameInfoType1Offset = static_cast<uint32_t>(remainingData.data() - data.data());
         totalNumFramesType1 = 0;
-        while (*remainingData.data() != static_cast<std::byte>(0xFF))
+        while (!remainingData.empty() && *remainingData.data() != static_cast<std::byte>(0xFF))
         {
             totalNumFramesType1++;
             remainingData = remainingData.subspan(sizeof(ImageAndHeight));

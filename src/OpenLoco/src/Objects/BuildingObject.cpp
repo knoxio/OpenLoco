@@ -74,7 +74,7 @@ namespace OpenLoco
         for (auto i = 0; i < numVariations; ++i)
         {
             variationPartsOffset[i] = remainingData.data() - data.data();
-            while (*remainingData.data() != static_cast<std::byte>(0xFF))
+            while (!remainingData.empty() && *remainingData.data() != static_cast<std::byte>(0xFF))
             {
                 remainingData = remainingData.subspan(1);
             }

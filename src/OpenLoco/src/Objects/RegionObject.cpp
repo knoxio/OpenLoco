@@ -40,7 +40,7 @@ namespace OpenLoco
         }
 
         // Find all the objects that this object loads
-        while (*remainingData.data() != static_cast<std::byte>(0xFF))
+        while (!remainingData.empty() && *remainingData.data() != static_cast<std::byte>(0xFF))
         {
             ObjectHeader willLoadHeader = *reinterpret_cast<const ObjectHeader*>(remainingData.data());
             if (dependencies != nullptr)
