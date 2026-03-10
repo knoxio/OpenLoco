@@ -149,7 +149,7 @@ namespace OpenLoco::Ui::Windows::Terraform
 
         static constexpr auto widgets = makeWidgets(
             Common::makeCommonWidgets(634, 162, StringIds::title_plant_trees),
-            Widgets::ScrollView({ 3, 45 }, { 605, 101 }, WindowColour::secondary, Scrollbars::vertical),
+            Widgets::ScrollView({ 2, 45 }, { 606, 101 }, WindowColour::secondary, Scrollbars::vertical),
             Widgets::ImageButton({ 609, 46 }, { 24, 24 }, WindowColour::secondary, ImageIds::rotate_object, StringIds::rotate_object_90),
             Widgets::ColourButton({ 609, 70 }, { 24, 24 }, WindowColour::secondary, Widget::kContentNull, StringIds::tooltip_object_colour),
             Widgets::ImageButton({ 609, 94 }, { 24, 24 }, WindowColour::secondary, ImageIds::plant_cluster_selected_tree, StringIds::plant_cluster_selected_tree),
@@ -845,13 +845,13 @@ namespace OpenLoco::Ui::Windows::Terraform
                     if (self.rowInfo[i] == self.var_846)
                     {
                         _lastTreeColourFlag = AdvancedColour::translucentFlag;
-                        drawingCtx.drawRectInset(xPos, yPos, 65, kRowHeight - 1, self.getColour(WindowColour::secondary), Gfx::RectInsetFlags::colourLight);
+                        drawingCtx.drawRectInset(xPos, yPos, kColumnWidth, kRowHeight, self.getColour(WindowColour::secondary), Gfx::RectInsetFlags::colourLight);
                     }
                 }
                 else
                 {
                     _lastTreeColourFlag = AdvancedColour::translucentFlag | AdvancedColour::outlineFlag;
-                    drawingCtx.drawRectInset(xPos, yPos, 65, kRowHeight - 1, self.getColour(WindowColour::secondary), (Gfx::RectInsetFlags::colourLight | Gfx::RectInsetFlags::borderInset));
+                    drawingCtx.drawRectInset(xPos, yPos, kColumnWidth, kRowHeight, self.getColour(WindowColour::secondary), (Gfx::RectInsetFlags::colourLight | Gfx::RectInsetFlags::borderInset));
                 }
 
                 const auto* treeObj = ObjectManager::get<TreeObject>(self.rowInfo[i]);
