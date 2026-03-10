@@ -12,6 +12,11 @@ namespace OpenLoco::GameCommands
     {
         GameCommands::setExpenditureType(ExpenditureType::LoanInterest);
 
+        if (newLoan < 0)
+        {
+            return FAILURE;
+        }
+
         auto* company = CompanyManager::get(GameCommands::getUpdatingCompanyId());
         const currency32_t loanDifference = company->currentLoan - newLoan;
 
