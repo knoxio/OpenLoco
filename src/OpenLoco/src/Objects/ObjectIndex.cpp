@@ -32,6 +32,7 @@
 #include "World/CompanyManager.h"
 #include "World/IndustryManager.h"
 #include "World/Station.h"
+#include <OpenLoco/Core/Exception.hpp>
 #include <OpenLoco/Core/FileStream.h>
 #include <OpenLoco/Core/Numerics.hpp>
 #include <OpenLoco/Core/Timer.hpp>
@@ -556,6 +557,14 @@ namespace OpenLoco::ObjectManager
         if (!tryLoadIndex(currentState))
         {
             createIndex(currentState);
+        }
+
+        if (_installedObjectList.empty())
+        {
+            Logging::error("No object files (.DAT) found in any object folder. The game cannot start without objects.");
+            Logging::error("Searched folders: {}, {}, {}", vanillaObjectPath.u8string(), objectPath.u8string(), customObjectPath.u8string());
+            Ui::showMessageBox("OpenLoco", "No object files found.\n\nPlease ensure your Locomotion data directory contains valid .DAT files in the ObjData folder.\nThe game cannot start without objects.");
+            throw Exception::RuntimeError("No object files found in any object folder");
         }
 
         _customObjectsInIndex = hasCustomObjectsInIndex();
