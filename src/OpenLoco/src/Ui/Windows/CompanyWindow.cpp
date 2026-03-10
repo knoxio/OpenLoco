@@ -2533,7 +2533,9 @@ namespace OpenLoco::Ui::Windows::CompanyWindow
             if ((Scenario::getObjective().flags & Scenario::ObjectiveFlags::withinTimeLimit) != Scenario::ObjectiveFlags::none)
             {
                 // time limited challenge
-                uint16_t monthsLeft = Scenario::getObjective().timeLimitYears * 12 - Scenario::getObjectiveProgress().monthsInChallenge;
+                auto totalMonths = static_cast<uint16_t>(Scenario::getObjective().timeLimitYears) * 12;
+                auto elapsed = Scenario::getObjectiveProgress().monthsInChallenge;
+                uint16_t monthsLeft = elapsed >= totalMonths ? 0 : totalMonths - elapsed;
                 uint16_t years = monthsLeft / 12;
                 uint16_t months = monthsLeft % 12;
 
