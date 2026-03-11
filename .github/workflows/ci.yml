@@ -1,5 +1,5 @@
 name: CI
-on: [pull_request, workflow_dispatch]
+on: [push, pull_request, workflow_dispatch]
 env:
   OPENLOCO_BUILD_SERVER: GitHub
   ASSETS_SSH_KEY: ${{ secrets.ASSETS_SSH_KEY }}
