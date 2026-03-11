@@ -1757,7 +1757,6 @@ namespace OpenLoco::Ui::Windows::CompanyWindow
             self.widgets[Common::widx::company_select].left = self.width - 28;
 
             const auto isControllingCompany = company->id() == CompanyManager::getControllingId();
-            self.widgets[widx::currentLoan].hidden = !isControllingCompany;
             self.widgets[widx::loan_decrease].hidden = !isControllingCompany;
             self.widgets[widx::loan_increase].hidden = !isControllingCompany;
             self.widgets[widx::loan_autopay].hidden = !isControllingCompany;
