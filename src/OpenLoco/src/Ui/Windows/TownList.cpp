@@ -641,6 +641,15 @@ namespace OpenLoco::Ui::Windows::TownList
             return;
         }
 
+        // Only update rowInfo when on the town list tab. On other tabs (BuildBuildings,
+        // BuildMiscBuildings) rowInfo contains building object IDs, not town IDs.
+        // Blindly comparing against the town ID would corrupt building entries that
+        // happen to share the same numeric value, leading to a crash.
+        if (window->currentTab != Common::widx::tab_town_list - Common::widx::tab_town_list)
+        {
+            return;
+        }
+
         for (auto i = 0; i < window->var_83C; i++)
         {
             if (window->rowInfo[i] == enumValue(townId))
